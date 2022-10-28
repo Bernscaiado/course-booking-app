@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,17 +21,39 @@ public class MainActivity extends AppCompatActivity {
         Button loginAcc = findViewById(R.id.login);
         Button createAcc = findViewById(R.id.createAcc);
 
+        EditText firstname = findViewById(R.id.firstname);
         EditText username = findViewById(R.id.username);
         EditText password = findViewById(R.id.password);
 
+        DBHandler db = new DBHandler(this);
+
         // button listeners
-        loginAcc.setOnClickListener(new View.OnClickListener() {
+        createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+                String first = firstname.getText().toString();
+                String user = username.getText().toString();
+                String pass = password.getText().toString();
+
+                if (user.equals("") || pass.equals("")) {
+                    Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_SHORT);
+
+                } else {
+                    Boolean checkuser = db.checkUsername(user);
+                    if (checkuser == false) {
+                        User new_user = new Admin(user, first, "admin", pass);
+                        Boolean insert = db.addUser(new_user);
+                        if (insert == true) {
+                            Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_LONG);
+                        }
+                    }
+
+                }
+
             }
         });
 
-        createAcc.setOnClickListener(new View.OnClickListener() {
+        loginAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(v.getContext(), MainActivity2.class);
