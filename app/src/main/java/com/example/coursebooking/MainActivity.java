@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
                         Boolean insert = db.addUser(new_user);
                         if (insert == true) {
                             Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_LONG);
+                            Intent intent = new Intent(v.getContext(), MainActivity2.class);
+                            v.getContext().startActivity(intent);
                         }
                     }
 
@@ -56,8 +58,22 @@ public class MainActivity extends AppCompatActivity {
         loginAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(v.getContext(), MainActivity2.class);
-                v.getContext().startActivity(intent);}
+                String first = firstname.getText().toString();
+                String user = username.getText().toString();
+                String pass = password.getText().toString();
+
+                if (user.equals("") || pass.equals("")) {
+                    Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_SHORT);
+                } else {
+                    Boolean checkuserpass = db.checkUsernamePassword(user, pass);
+                    if (checkuserpass == true) {
+                        Toast.makeText(MainActivity.this, "Sign in Successfully", Toast.LENGTH_LONG);
+
+                        Intent intent = new Intent(v.getContext(), MainActivity2.class);
+                        v.getContext().startActivity(intent);
+                    }
+                }
+            }
         });
 
 

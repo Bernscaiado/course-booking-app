@@ -12,7 +12,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_FIRSTNAME = "firstname";
     private static final String COLUMN_ROLE = "role";
-    private static final String COLUMN_PASSWORD = "role";
+    private static final String COLUMN_PASSWORD = "password";
 
 
     private static final String DATABASE_NAME = "users.db";
