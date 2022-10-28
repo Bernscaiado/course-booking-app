@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Boolean checkuser = db.checkUsername(user);
                     if (checkuser == false) {
-                        User new_user = new Admin(user, first, "admin", pass);
+                        User new_user = new Student(user, first, "student", pass);
                         Boolean insert = db.addUser(new_user);
                         if (insert == true) {
                             Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_LONG);
