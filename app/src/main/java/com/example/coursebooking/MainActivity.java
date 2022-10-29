@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 String first = firstname.getText().toString();
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
+                String role = spinner.getSelectedItem().toString();
 
                 if (user.equals("") || pass.equals("")) {
                     Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_SHORT);
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Boolean checkuser = db.checkUsername(user);
                     if (checkuser == false) {
-                        User new_user = new Student(user, first, "student", pass);
+                        User new_user = new Student(user, first, role, pass);
                         Boolean insert = db.addUser(new_user);
                         if (insert == true) {
                             Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_LONG);
