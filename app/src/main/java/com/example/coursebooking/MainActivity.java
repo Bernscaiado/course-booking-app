@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
         EditText firstname = findViewById(R.id.firstname);
         EditText username = findViewById(R.id.username);
         EditText password = findViewById(R.id.password);
+
+        // Spinner config
+        Spinner spinner = findViewById(R.id.spinner);
+        String[] roles = { "Instructor", "Student" };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, roles);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+
 
         DBHandler db = new DBHandler(this);
 
