@@ -13,7 +13,16 @@
         android:theme="@style/Theme.CourseBooking"
         tools:targetApi="31">
         <activity
-            android:name="com.example.coursebooking.MainActivity2"
+            android:name=".MainActivity3"
+            android:exported="false"
+            android:label="@string/title_activity_main3"
+            android:theme="@style/Theme.CourseBooking.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MainActivity2"
             android:exported="false"
             android:label="@string/title_activity_main2"
             android:theme="@style/Theme.CourseBooking.NoActionBar">
@@ -22,7 +31,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.coursebooking.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -14,4 +14,5 @@
     <string name="firstname">Firstname</string>
     <string name="spinner">Role</string>
     <item name="spinner" type="id"></item>
+    <string name="title_activity_main3">MainActivity3</string>
 </resources>

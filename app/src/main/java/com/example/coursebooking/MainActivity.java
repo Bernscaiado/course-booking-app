@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Spinner config
         Spinner spinner = findViewById(R.id.spinner);
-        String[] roles = { "Instructor", "Student" };
+        String[] roles = { "Instructor", "Student", "Admin" };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, roles);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -57,7 +57,13 @@ public class MainActivity extends AppCompatActivity {
                         Boolean insert = db.addUser(new_user);
                         if (insert == true) {
                             Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_LONG);
-                            Intent intent = new Intent(v.getContext(), MainActivity2.class);
+                            Intent intent;
+                            if (role == "admin")
+                            {
+                                intent = new Intent(v.getContext(), MainActivity2.class);
+                            } else {
+                                intent = new Intent(v.getContext(), MainActivity3.class);
+                            }
                             v.getContext().startActivity(intent);
                         }
                     }
