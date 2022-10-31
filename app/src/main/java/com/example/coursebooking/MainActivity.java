@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     Boolean checkuser = db.checkUsername(user);
+                    if (checkuser == true) {
+                        Toast.makeText(MainActivity.this, "User is already registered", Toast.LENGTH_SHORT).show();
+                    }
                     if (checkuser == false) {
                         User new_user = new Student(user, first, role, pass);
                         Boolean insert = db.addUser(new_user);
