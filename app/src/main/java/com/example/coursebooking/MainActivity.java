@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 String role = spinner.getSelectedItem().toString();
 
                 if (user.equals("") || pass.equals("")) {
-                    Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_SHORT);
+                    Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
 
                 } else {
                     Boolean checkuser = db.checkUsername(user);
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         User new_user = new Student(user, first, role, pass);
                         Boolean insert = db.addUser(new_user);
                         if (insert == true) {
-                            Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_LONG);
+                            Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
                             Intent intent;
                             if (role.equals("Admin"))
                             {
@@ -83,11 +83,11 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (user.equals("") || pass.equals("")) {
-                    Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_SHORT);
+                    Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
                 } else {
                     Boolean checkuserpass = db.checkUsernamePassword(user, pass);
                     if (checkuserpass == true) {
-                        Toast.makeText(MainActivity.this, "Sign in Successfully", Toast.LENGTH_LONG);
+                        Toast.makeText(MainActivity.this, "Sign in Successfully", Toast.LENGTH_LONG).show();
 
                         Intent intent;
                         if (role.equals("Admin"))
