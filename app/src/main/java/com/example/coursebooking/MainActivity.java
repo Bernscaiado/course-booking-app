@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 String first = firstname.getText().toString();
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
+                String role = spinner.getSelectedItem().toString();
+
 
                 if (user.equals("") || pass.equals("")) {
                     Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_SHORT);
@@ -87,7 +89,13 @@ public class MainActivity extends AppCompatActivity {
                     if (checkuserpass == true) {
                         Toast.makeText(MainActivity.this, "Sign in Successfully", Toast.LENGTH_LONG);
 
-                        Intent intent = new Intent(v.getContext(), MainActivity2.class);
+                        Intent intent;
+                        if (role == "admin")
+                        {
+                            intent = new Intent(v.getContext(), MainActivity2.class);
+                        } else {
+                            intent = new Intent(v.getContext(), MainActivity3.class);
+                        }
                         v.getContext().startActivity(intent);
                     }
                 }
