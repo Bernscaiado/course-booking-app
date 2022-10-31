@@ -1,7 +1,5 @@
 package com.example.coursebooking;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Button loginAcc = findViewById(R.id.login);
         Button createAcc = findViewById(R.id.createAcc);
 
-        EditText firstname = findViewById(R.id.firstname);
+
         EditText username = findViewById(R.id.username);
         EditText password = findViewById(R.id.password);
 
@@ -42,72 +44,38 @@ public class MainActivity extends AppCompatActivity {
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                String first = firstname.getText().toString();
-                String user = username.getText().toString();
-                String pass = password.getText().toString();
-                String role = spinner.getSelectedItem().toString();
-
-                if (user.equals("") || pass.equals("")) {
-                    Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    Boolean checkuser = db.checkUsername(user);
-                    if (checkuser == true) {
-                        Toast.makeText(MainActivity.this, "User is already registered", Toast.LENGTH_SHORT).show();
-                    }
-                    if (checkuser == false) {
-                        User new_user = new Student(user, first, role, pass);
-                        Boolean insert = db.addUser(new_user);
-                        if (insert == true) {
-                            Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
-                            Intent intent;
-                            if (role.equals("Admin"))
-                            {
-                                intent = new Intent(v.getContext(), MainActivity2.class);
-                            } else {
-                                intent = new Intent(v.getContext(), MainActivity3.class);
-                            }
-                            intent.putExtra("firstname", first);
-                            intent.putExtra("username", user);
-                            intent.putExtra("role", role);
-
-
-                            v.getContext().startActivity(intent);
-                        }
-                    }
-
-                }
+                Intent intent = new Intent(v.getContext(), SignupActivity4.class);
+                startActivity(intent);
 
             }
         });
 
+
+
         loginAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                String first = firstname.getText().toString();
+
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
                 String role = spinner.getSelectedItem().toString();
 
 
                 if (user.equals("") || pass.equals("")) {
-                    Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_SHORT);
                 } else {
                     Boolean checkuserpass = db.checkUsernamePassword(user, pass);
                     if (checkuserpass == true) {
-                        Toast.makeText(MainActivity.this, "Sign in Successfully", Toast.LENGTH_LONG).show();
-
+                        Toast.makeText(MainActivity.this, "Sign in Successfully", Toast.LENGTH_LONG);
                         Intent intent;
-                        if (role.equals("Admin"))
+
+
+                        if (role == "admin")
                         {
                             intent = new Intent(v.getContext(), MainActivity2.class);
                         } else {
                             intent = new Intent(v.getContext(), MainActivity3.class);
                         }
-                        intent.putExtra("firstname", first);
-                        intent.putExtra("username", user);
-                        intent.putExtra("role", role);
-
                         v.getContext().startActivity(intent);
                     }
                 }
