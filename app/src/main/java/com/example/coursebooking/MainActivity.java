@@ -63,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent;
                             if (role.equals("Admin"))
                             {
-                                intent = new Intent(v.getContext(), MainActivity3.class);
-                            } else {
                                 intent = new Intent(v.getContext(), MainActivity2.class);
+                            } else {
+                                intent = new Intent(v.getContext(), MainActivity3.class);
                             }
                             v.getContext().startActivity(intent);
                         }
@@ -95,9 +95,9 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent;
                         if (role.equals("Admin"))
                         {
-                            intent = new Intent(v.getContext(), MainActivity3.class);
-                        } else {
                             intent = new Intent(v.getContext(), MainActivity2.class);
+                        } else {
+                            intent = new Intent(v.getContext(), MainActivity3.class);
                         }
                         v.getContext().startActivity(intent);
                     }
