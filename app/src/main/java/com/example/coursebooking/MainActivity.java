@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
                         if (insert == true) {
                             Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_LONG);
                             Intent intent;
-                            if (role == "admin")
+                            if (role.equals("Admin"))
                             {
-                                intent = new Intent(v.getContext(), MainActivity2.class);
-                            } else {
                                 intent = new Intent(v.getContext(), MainActivity3.class);
+                            } else {
+                                intent = new Intent(v.getContext(), MainActivity2.class);
                             }
                             v.getContext().startActivity(intent);
                         }
@@ -90,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Sign in Successfully", Toast.LENGTH_LONG);
 
                         Intent intent;
-                        if (role == "admin")
+                        if (role.equals("Admin"))
                         {
-                            intent = new Intent(v.getContext(), MainActivity2.class);
-                        } else {
                             intent = new Intent(v.getContext(), MainActivity3.class);
+                        } else {
+                            intent = new Intent(v.getContext(), MainActivity2.class);
                         }
                         v.getContext().startActivity(intent);
                     }
