@@ -67,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
                             } else {
                                 intent = new Intent(v.getContext(), MainActivity3.class);
                             }
+                            intent.putExtra("firstname", first);
+                            intent.putExtra("username", user);
+                            intent.putExtra("role", role);
+
+
                             v.getContext().startActivity(intent);
                         }
                     }
@@ -99,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             intent = new Intent(v.getContext(), MainActivity3.class);
                         }
+                        intent.putExtra("firstname", first);
+                        intent.putExtra("username", user);
+                        intent.putExtra("role", role);
+
                         v.getContext().startActivity(intent);
                     }
                 }
