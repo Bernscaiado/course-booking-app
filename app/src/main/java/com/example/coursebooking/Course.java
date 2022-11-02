@@ -1,27 +1,35 @@
 package com.example.coursebooking;
 
 public class Course {
-    private int code;
-    private String name;
+    private String CourseName;
+    private int CourseCode;
 
-    public Course(int code, String name) {
-        this.code = code;
-        this.name = name;
+    @Override
+    public String toString() {
+        return "Course{" +
+                "CourseName='" + CourseName + '\'' +
+                ", CourseCode=" + CourseCode +
+                '}';
     }
 
-    public int getCode() {
-        return code;
+    public String getCourseName() {
+        return CourseName;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setCourseName(String courseName) {
+        CourseName = courseName;
     }
 
-    public String getName() {
-        return name;
+    public int getCourseCode() {
+        return CourseCode;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCourseCode(int courseCode) {
+        CourseCode = courseCode;
+    }
+
+    public Course(String courseName, int courseCode) {
+        CourseName = courseName;
+        CourseCode = courseCode;
     }
 }
