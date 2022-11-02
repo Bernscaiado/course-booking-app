@@ -37,8 +37,26 @@
         </activity>
         <activity
             android:name=".MainActivity2"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.CourseBooking.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ManageUsers"
+            android:exported="true"
+            android:label="@string/title_activity_users"
+            android:theme="@style/Theme.CourseBooking.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ManageCourses"
+            android:exported="true"
+            android:label="@string/title_activity_courses"
             android:theme="@style/Theme.CourseBooking.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
