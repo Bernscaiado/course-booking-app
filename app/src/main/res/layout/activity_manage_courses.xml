@@ -6,6 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".ManageCourses">
 
+    <EditText
+        android:id="@+id/CodeNew"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="212dp"
+        android:hint="Enter NewCourseCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Name" />
+
+    <EditText
+        android:id="@+id/NameNew"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="140dp"
+        android:hint="Enter NewCourseName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Name" />
+
+    <Button
+        android:id="@+id/deleteCourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:text="deleteCourse"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createCourse" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="133dp"
@@ -28,4 +59,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
+
+    <Button
+        android:id="@+id/createCourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="12dp"
+        android:text="CreateCourse"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Button
+        android:id="@+id/editCourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="EditCourse"
+        app:layout_constraintBottom_toTopOf="@+id/NameNew"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Code" />
+
+    <EditText
+        android:id="@+id/Name"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="9dp"
+        android:hint="Enter CourseName"
+        app:layout_constraintBottom_toTopOf="@+id/Code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteCourse" />
+
+    <EditText
+        android:id="@+id/Code"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:hint="Enter CourseCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

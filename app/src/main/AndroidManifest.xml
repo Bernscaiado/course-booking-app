@@ -13,29 +13,37 @@
         android:theme="@style/Theme.CourseBooking"
         tools:targetApi="31">
         <activity
-            android:name=".ManageUsers"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ManageCourses"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".MainActivity3"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/title_activity_main3"
+            android:theme="@style/Theme.CourseBooking.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".MainActivity2"
-            android:exported="false">
+            android:exported="true"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.CourseBooking.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ManageUsers"
+            android:exported="true"
+            android:label="@string/title_activity_users"
+            android:theme="@style/Theme.CourseBooking.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ManageCourses"
+            android:exported="true"
+            android:label="@string/title_activity_courses"
+            android:theme="@style/Theme.CourseBooking.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
