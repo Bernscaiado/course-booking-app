@@ -34,9 +34,13 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-
-
+        // Creation of DBHandler to manage User database
         DBHandler db = new DBHandler(this);
+
+        // Creation of only admin account
+        User new_user = new Student("admin", "admin", "Admin", "admin123");
+        db.addUser(new_user);
+
 
         // button listeners
         createAcc.setOnClickListener(new View.OnClickListener() {
@@ -55,11 +59,14 @@ public class MainActivity extends AppCompatActivity {
                     if (checkuser == true) {
                         Toast.makeText(MainActivity.this, "User is already registered", Toast.LENGTH_SHORT).show();
                     }
-                    if (checkuser == false) {
+                    if (role == "Admin") {
+                        Toast.makeText(MainActivity.this, "Cannot Create Admin Account", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
                         User new_user = new Student(user, first, role, pass);
                         Boolean insert = db.addUser(new_user);
                         if (insert == true) {
-                            Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                             Intent intent;
                             if (role.equals("Admin"))
                             {
