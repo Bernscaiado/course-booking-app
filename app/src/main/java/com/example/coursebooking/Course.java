@@ -2,7 +2,7 @@ package com.example.coursebooking;
 
 public class Course {
     private String CourseName;
-    private int CourseCode;
+    private String CourseCode;
 
     @Override
     public String toString() {
@@ -20,16 +20,16 @@ public class Course {
         CourseName = courseName;
     }
 
-    public int getCourseCode() {
+    public String getCourseCode() {
         return CourseCode;
     }
 
-    public void setCourseCode(int courseCode) {
+    public void setCourseCode(String courseCode) {
         CourseCode = courseCode;
     }
 
-    public Course(String courseName, int courseCode) {
-        CourseName = courseName;
-        CourseCode = courseCode;
+    public Course(String courseName, String courseCode) {
+        this.CourseName = courseName;
+        this.CourseCode = courseCode;
     }
 }

@@ -19,10 +19,10 @@ public class ManageCourses extends AppCompatActivity {
         Button delete = findViewById(R.id.deleteCourse);
         Button edit = findViewById(R.id.editCourse);
         Button create = findViewById(R.id.createCourse);
-        EditText code = findViewById(R.id.Name);
-        EditText name= findViewById(R.id.Code);
-        EditText newCode = findViewById(R.id.NameNew);
-        EditText newName= findViewById(R.id.CodeNew);
+        EditText code = findViewById(R.id.Code);
+        EditText name= findViewById(R.id.Name);
+        EditText newCode = findViewById(R.id.CodeNew);
+        EditText newName= findViewById(R.id.NameNew);
 
         Button btn_back1 = findViewById(R.id.btn_back1);
 
@@ -39,42 +39,82 @@ public class ManageCourses extends AppCompatActivity {
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Course course;
+            public void onClick(View v) {
 
-                try {
-                    course= new Course(name.getText().toString(),Integer.parseInt(code.getText().toString()));
-                    Toast.makeText(ManageCourses.this,course.toString(),Toast.LENGTH_SHORT).show();
+                String coursename = name.getText().toString();
+                String coursecode = code.getText().toString();
+
+
+
+
+
+                if (coursename.equals("") || coursecode.equals("")) {
+                    Toast.makeText(ManageCourses.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+
+                }
+                else if(db.checkAvalibility(coursename,coursecode)== true)
+                {
+                    Toast.makeText(ManageCourses.this, "Same Course Created", Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+                    Course course= new Course(coursename,coursecode);
+
+
+
                     boolean success = db.addOne(course);
-                    Toast.makeText(ManageCourses.this ,"SUCCESS",Toast.LENGTH_SHORT).show();
-                }
-                catch (Exception e ){
-                    Toast.makeText(ManageCourses.this ,"ERROR INPUT",Toast.LENGTH_SHORT).show();
-                }
+
+                    if (success){
+                        Toast.makeText(ManageCourses.this ,"SUCCESS",Toast.LENGTH_SHORT).show();}
 
 
-            }
+
+
+
+            }}
         });
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Course course;
-                try {
-                    course= new Course(name.getText().toString(),Integer.parseInt(code.getText().toString()));
-                    Toast.makeText(ManageCourses.this,course.toString(),Toast.LENGTH_SHORT).show();
-                    boolean success = db.deleteCourse(name.getText().toString(),code.getText().toString());
-                    Toast.makeText(ManageCourses.this ,"SUCCESS",Toast.LENGTH_SHORT).show();
+                String coursename = name.getText().toString();
+                String coursecode = code.getText().toString();
+
+                if (coursename.equals("") || coursecode.equals("")) {
+                    Toast.makeText(ManageCourses.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+
                 }
-                catch (Exception e ){
-                    Toast.makeText(ManageCourses.this ,"ERROR INPUT",Toast.LENGTH_SHORT).show();
-                }
-            }
+
+                else{
+
+
+
+                    boolean success = db.deleteCourse(coursename,coursecode);
+                    if (success){
+                    Toast.makeText(ManageCourses.this ,"DeleteSUCCESS",Toast.LENGTH_SHORT).show();}
+
+
+            }}
         });
         edit.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String coursename = name.getText().toString();
+                String coursecode = code.getText().toString();
+                String newname = newName.getText().toString();
+                String newcode = newCode.getText().toString();
+                if (coursename.equals("") || coursecode.equals("")|| newname.equals("") || newcode.equals("")) {
+                    Toast.makeText(ManageCourses.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+
+                }
+                else if(db.checkAvalibility(newname,newcode)== true)
+                {
+                    Toast.makeText(ManageCourses.this, "Same Course Created", Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+
                 db.editCourse(newName.getText().toString(),newCode.getText().toString(),name.getText().toString(),code.getText().toString());
-                Toast.makeText(ManageCourses.this,"Course Edited",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ManageCourses.this,"Course Edited",Toast.LENGTH_SHORT).show();}
 
 
 
