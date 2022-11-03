@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class CourseDatabase extends SQLiteOpenHelper {
-    private static final String TABLE_COURSES = "Courses";
+    private static final String TABLE_COURSES = "courses";
     private static final String COLUMN_COURSENAME = "name";
     private static final String COLUMN_COURSECODE = "code";
     private static final String COLUMN_ID = "id";
@@ -15,7 +15,7 @@ public class CourseDatabase extends SQLiteOpenHelper {
 
 
 
-    private static final String DATABASE_NAME = "Course.db";
+    private static final String DATABASE_NAME = "courses.db";
     private static final int DATABASE_VERSION = 1;
 
     public CourseDatabase(Context context) {
@@ -41,9 +41,8 @@ public class CourseDatabase extends SQLiteOpenHelper {
 
     public Boolean checkAvalibility(String coursename, String coursecode) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Courses WHERE name = ?", new String[] {coursename});
-        Cursor cursor2 = db.rawQuery("SELECT * FROM Courses WHERE code = ?", new String[] {coursecode});
-        return cursor.getCount()>0 && cursor2.getCount()>0;
+        Cursor cursor = db.rawQuery("SELECT * FROM courses WHERE name = ? AND code = ?", new String[] {coursename,coursecode});
+        return cursor.getCount()>0;
     }
 
     public boolean addOne(Course course){

@@ -27,7 +27,7 @@ public class ManageCourses extends AppCompatActivity {
         Button btn_back1 = findViewById(R.id.btn_back1);
 
         //handler
-        CourseDatabase db = new CourseDatabase(ManageCourses.this);
+        CourseDatabase db = new CourseDatabase(this);
 
         btn_back1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +102,7 @@ public class ManageCourses extends AppCompatActivity {
                 String coursecode = code.getText().toString();
                 String newname = newName.getText().toString();
                 String newcode = newCode.getText().toString();
-                if (coursename.equals("") || coursecode.equals("")|| newname.equals("") || newcode.equals("")) {
+                if (coursename.equals("") || coursecode.equals("")) {
                     Toast.makeText(ManageCourses.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
 
                 }
@@ -111,6 +111,10 @@ public class ManageCourses extends AppCompatActivity {
                     Toast.makeText(ManageCourses.this, "Same Course Created", Toast.LENGTH_SHORT).show();
 
                 }
+                else if(db.checkAvalibility(coursename,coursecode)==false){
+                    Toast.makeText(ManageCourses.this,"Course Edited",Toast.LENGTH_SHORT).show();}
+
+
                 else{
 
                 db.editCourse(newName.getText().toString(),newCode.getText().toString(),name.getText().toString(),code.getText().toString());
