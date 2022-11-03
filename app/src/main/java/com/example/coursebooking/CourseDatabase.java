@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class CourseDatabase extends SQLiteOpenHelper {
     private static final String TABLE_COURSE = "COURSE";
+    private static final String COLUMN_ID = "id";
     private static final String COLUMN_COURSECODE = "CODE";
     private static final String COLUMN_COURSENAME = "NAME";
 
@@ -22,8 +23,9 @@ public class CourseDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String create_table_cmd = "CREATE TABLE " + TABLE_COURSE +
-                "(" + COLUMN_COURSECODE + "INTEGER PRIMARY KEY, " +
-                COLUMN_COURSENAME + ")";
+                "(" + COLUMN_ID + "INTEGER PRIMARY KEY, " +
+                COLUMN_COURSENAME + " TEXT, " +
+                COLUMN_COURSECODE + ")";
 
         db.execSQL(create_table_cmd);
     }
