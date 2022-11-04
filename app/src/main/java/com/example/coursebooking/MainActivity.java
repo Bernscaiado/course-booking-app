@@ -38,8 +38,11 @@ public class MainActivity extends AppCompatActivity {
         DBHandler db = new DBHandler(this);
 
         // Creation of only admin account
-        User new_user = new Student("admin", "admin", "Admin", "admin123");
-        db.addUser(new_user);
+        User new_user = new Admin("admin", "admin", "Admin", "admin123");
+        Boolean check_new_user = db.checkUsername("admin");
+        if (check_new_user == false) {
+            db.addUser(new_user);
+        }
 
 
         // button listeners

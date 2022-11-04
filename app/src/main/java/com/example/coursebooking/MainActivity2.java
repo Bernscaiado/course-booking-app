@@ -28,7 +28,7 @@ public class MainActivity2 extends AppCompatActivity {
 
 
         TextView receiver_msg =  findViewById(R.id.received_value_id);
-        receiver_msg.setText(str1 + "/" + str2 + "! You are logged in as '" + str3 + "'");
+        receiver_msg.setText("admin" + "/" + "admin" + "! You are logged in as '" + "Admin" + "'");
 
         btn_courses.setOnClickListener(new View.OnClickListener() {
             @Override
