@@ -68,5 +68,10 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM USERS WHERE username = ? AND password = ?", new String[] {username,password});
         return cursor.getCount()>0;
     }
+    public boolean deleteUser(String username, String firstname) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int flag = db.delete(TABLE_USERS, "username = ? and firstname = ?", new String[]{username, firstname});
+        return flag !=0;
+    }
 
 }
