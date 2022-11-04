@@ -17,6 +17,10 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        Intent intent = getIntent();
+        String str1 = intent.getStringExtra("firstname");
+        String str2 = intent.getStringExtra("username");
+        String str3 = intent.getStringExtra("role");
 
         Button btn_users = findViewById(R.id.btn_users);
         Button btn_courses = findViewById(R.id.btn_courses);
@@ -24,7 +28,7 @@ public class MainActivity2 extends AppCompatActivity {
 
 
         TextView receiver_msg =  findViewById(R.id.received_value_id);
-        receiver_msg.setText("You are logged in as admin");
+        receiver_msg.setText("admin" + "/" + "admin" + "! You are logged in as '" + "Admin" + "'");
 
         btn_courses.setOnClickListener(new View.OnClickListener() {
             @Override
