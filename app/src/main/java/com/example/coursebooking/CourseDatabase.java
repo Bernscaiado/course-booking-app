@@ -83,8 +83,9 @@ public class CourseDatabase extends SQLiteOpenHelper {
             cv.put(COLUMN_COURSENAME, newName);
             cv.put(COLUMN_COURSECODE, newCode);
         }
-        db.update(TABLE_COURSES,cv,"name = ? ",new String[]{oldName});
-        db.close();
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? ",new String[]{oldName,oldCode});
+
+
 
 
     }

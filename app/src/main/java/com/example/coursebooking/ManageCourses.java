@@ -83,6 +83,11 @@ public class ManageCourses extends AppCompatActivity {
                     Toast.makeText(ManageCourses.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
 
                 }
+                else if(db.checkAvalibility(coursename,coursecode)== false)
+                {
+                    Toast.makeText(ManageCourses.this, "No such course", Toast.LENGTH_SHORT).show();
+
+                }
 
                 else{
 

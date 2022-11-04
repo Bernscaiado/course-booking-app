@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.view.View.OnClickListener;
 
 public class ManageUsers extends AppCompatActivity {
     DBHandler dbHandler;
@@ -37,12 +36,12 @@ public class ManageUsers extends AppCompatActivity {
             public void onClick(View v){
                 String userName = username.getText().toString();
                 String firstName = firstname.getText().toString();
-                deleteProduct(userName,firstName);
+                deleteUser(userName,firstName);
             }
         });
     }
 
-    private void deleteProduct(String username, String firstName){
+    private void deleteUser(String username, String firstName){
         AlertDialog alertDialog = new AlertDialog.Builder(ManageUsers.this).create();
         alertDialog.setTitle("Notification");
         boolean flag = dbHandler.deleteUser(username, firstName);
