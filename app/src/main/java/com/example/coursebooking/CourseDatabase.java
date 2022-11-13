@@ -84,9 +84,11 @@ public class CourseDatabase extends SQLiteOpenHelper {
             cv.put(COLUMN_COURSECODE, newCode);
         }
         db.update(TABLE_COURSES,cv,"name = ? and code = ? ",new String[]{oldName,oldCode});
+    }
 
-
-
-
+    public Cursor getData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_COURSES;
+        return db.rawQuery(query, null); // returns "cursor" all products from the table
     }
 }
