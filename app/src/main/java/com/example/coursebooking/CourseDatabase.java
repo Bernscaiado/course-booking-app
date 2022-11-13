@@ -29,7 +29,7 @@ public class CourseDatabase extends SQLiteOpenHelper {
         String create_table_cmd = "CREATE TABLE " + TABLE_COURSES +
                 "(" + COLUMN_ID + "INTEGER PRIMARY KEY, " +
                 COLUMN_COURSENAME + " TEXT, " +
-                COLUMN_COURSECODE +
+                COLUMN_COURSECODE + " TEXT, " +
                 COLUMN_INSTRUCTOR + ")";
 
         db.execSQL(create_table_cmd);
@@ -69,6 +69,22 @@ public class CourseDatabase extends SQLiteOpenHelper {
         int flag = db.delete(TABLE_COURSES, "name=? and code = ?", new String[]{name , code});
         return flag !=0;
     }
+
+    public boolean setInstructor(String name, String code, String instructor) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_INSTRUCTOR, instructor);
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? ",new String[]{name,code});
+        return true;
+    }
+
+    public boolean hasInstructor(String coursename, String coursecode) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM courses WHERE name = ? AND code = ? AND instructor != NULL", new String[] {coursename,coursecode});
+        return cursor.getCount()>0;
+    }
+
+
     public void editCourse(String newName, String newCode, String oldName, String oldCode){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
