@@ -16,6 +16,8 @@ public class MainActivity3 extends AppCompatActivity {
         setContentView(R.layout.activity_main3);
 
         Button list = findViewById(R.id.listCourses);
+        Button assign = findViewById(R.id.assign);
+
 
         Intent intent = getIntent();
         String str1 = intent.getStringExtra("firstname");
@@ -30,6 +32,14 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ListCoursesActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        }));
+
+        assign.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CourseAssignActivity.class);
                 v.getContext().startActivity(intent);
             }
         }));

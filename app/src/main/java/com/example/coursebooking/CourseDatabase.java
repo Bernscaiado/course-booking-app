@@ -11,6 +11,8 @@ public class CourseDatabase extends SQLiteOpenHelper {
     private static final String COLUMN_COURSENAME = "name";
     private static final String COLUMN_COURSECODE = "code";
     private static final String COLUMN_ID = "id";
+    private static final String COLUMN_INSTRUCTOR = "instructor";
+
 
 
 
@@ -27,7 +29,8 @@ public class CourseDatabase extends SQLiteOpenHelper {
         String create_table_cmd = "CREATE TABLE " + TABLE_COURSES +
                 "(" + COLUMN_ID + "INTEGER PRIMARY KEY, " +
                 COLUMN_COURSENAME + " TEXT, " +
-                COLUMN_COURSECODE + ")";
+                COLUMN_COURSECODE +
+                COLUMN_INSTRUCTOR + ")";
 
         db.execSQL(create_table_cmd);
     }
