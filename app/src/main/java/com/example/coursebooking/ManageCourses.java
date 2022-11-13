@@ -19,6 +19,7 @@ public class ManageCourses extends AppCompatActivity {
         Button delete = findViewById(R.id.deleteCourse);
         Button edit = findViewById(R.id.editCourse);
         Button create = findViewById(R.id.createCourse);
+        Button list = findViewById(R.id.listCourses);
         EditText code = findViewById(R.id.Code);
         EditText name= findViewById(R.id.Name);
         EditText newCode = findViewById(R.id.CodeNew);
@@ -126,6 +127,15 @@ public class ManageCourses extends AppCompatActivity {
                 Toast.makeText(ManageCourses.this,"Course Edited",Toast.LENGTH_SHORT).show();}
 
 
+
+            }
+        }));
+
+        list.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ListCoursesActivity.class);
+                v.getContext().startActivity(intent);
 
             }
         }));
