@@ -78,6 +78,14 @@ public class CourseDatabase extends SQLiteOpenHelper {
         return true;
     }
 
+    public boolean nullInstructor(String name, String code, String instructor) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_INSTRUCTOR, "NULL");
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? AND instructor = ?",new String[]{name,code,instructor});
+        return true;
+    }
+
     public boolean hasInstructor(String coursename, String coursecode) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM courses WHERE name = ? AND code = ? AND instructor != NULL", new String[] {coursename,coursecode});

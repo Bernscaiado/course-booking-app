@@ -64,6 +64,19 @@ public class CourseAssignActivity extends AppCompatActivity {
                 }}
         });
 
+        unassign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String coursename = name.getText().toString();
+                String coursecode = code.getText().toString();
+                boolean success = db.nullInstructor(coursename, coursecode, str1);
+
+                if (success){
+                    Toast.makeText(CourseAssignActivity.this ,"SUCCESS",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
     }
 }
