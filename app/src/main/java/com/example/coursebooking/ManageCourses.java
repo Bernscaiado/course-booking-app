@@ -19,6 +19,7 @@ public class ManageCourses extends AppCompatActivity {
         Button delete = findViewById(R.id.deleteCourse);
         Button edit = findViewById(R.id.editCourse);
         Button create = findViewById(R.id.createCourse);
+        Button list = findViewById(R.id.listCourses);
         EditText code = findViewById(R.id.Code);
         EditText name= findViewById(R.id.Name);
         EditText newCode = findViewById(R.id.CodeNew);
@@ -44,10 +45,6 @@ public class ManageCourses extends AppCompatActivity {
                 String coursename = name.getText().toString();
                 String coursecode = code.getText().toString();
 
-
-
-
-
                 if (coursename.equals("") || coursecode.equals("")) {
                     Toast.makeText(ManageCourses.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
 
@@ -59,17 +56,10 @@ public class ManageCourses extends AppCompatActivity {
                 }
                 else{
                     Course course= new Course(coursename,coursecode);
-
-
-
                     boolean success = db.addOne(course);
 
                     if (success){
                         Toast.makeText(ManageCourses.this ,"SUCCESS",Toast.LENGTH_SHORT).show();}
-
-
-
-
 
             }}
         });
@@ -126,6 +116,15 @@ public class ManageCourses extends AppCompatActivity {
                 Toast.makeText(ManageCourses.this,"Course Edited",Toast.LENGTH_SHORT).show();}
 
 
+
+            }
+        }));
+
+        list.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ListCoursesActivity.class);
+                v.getContext().startActivity(intent);
 
             }
         }));
