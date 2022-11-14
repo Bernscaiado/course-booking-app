@@ -73,5 +73,10 @@ public class DBHandler extends SQLiteOpenHelper {
         int flag = db.delete(TABLE_USERS, "username = ? and firstname = ?", new String[]{username, firstname});
         return flag !=0;
     }
+    public Cursor getData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_USERS;
+        return db.rawQuery(query, null); // returns "cursor" all products from the table
+    }
 
 }

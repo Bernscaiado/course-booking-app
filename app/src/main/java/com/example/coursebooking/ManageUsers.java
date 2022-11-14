@@ -1,14 +1,19 @@
 package com.example.coursebooking;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import java.util.ArrayList;
 
 public class ManageUsers extends AppCompatActivity {
     DBHandler dbHandler;
@@ -18,11 +23,47 @@ public class ManageUsers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_users);
 
+        ArrayList<String> userList;
+        ArrayAdapter adapter;
+        //Array
+
         Button btn_back2 = findViewById(R.id.btn_back2);
         Button deleteStudent = findViewById(R.id.deleteStudent);
+        Button view = findViewById(R.id.viewall);
+        //Button
         EditText firstname = findViewById(R.id.firstname);
         EditText username = findViewById(R.id.username);
+        // EditText
         dbHandler = new DBHandler(this);
+        //database
+
+
+
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Cursor cursor = dbHandler.getData();
+               if (cursor.getCount()==0){
+                   Toast.makeText(ManageUsers.this,"no users available",Toast.LENGTH_SHORT);
+                   return;
+               }
+               StringBuffer buffer = new StringBuffer();
+               while (cursor.moveToNext()){
+                   buffer.append("firstname:"+cursor.getString(0)+"\n");
+                   buffer.append("username:"+cursor.getString(1)+"\n");
+                   buffer.append("role:"+cursor.getString(2)+"\n\n");
+               }
+               AlertDialog.Builder builder = new AlertDialog.Builder(ManageUsers.this);
+               builder.setCancelable(true);
+               builder.setTitle("UsersList");
+               builder.setMessage(buffer.toString());
+               builder.show();
+
+
+
+            }
+        });
 
         btn_back2.setOnClickListener(new View.OnClickListener() {
             @Override
