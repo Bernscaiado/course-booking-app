@@ -3,6 +3,7 @@ package com.example.coursebooking;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,11 @@ public class CourseAssignActivity extends AppCompatActivity {
         EditText code = findViewById(R.id.code);
 
         CourseDatabase db = new CourseDatabase(this);
+
+        Intent intent = getIntent();
+        String str1 = intent.getStringExtra("firstname");
+        String str2 = intent.getStringExtra("username");
+        String str3 = intent.getStringExtra("role");
 
 
         assign.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +56,7 @@ public class CourseAssignActivity extends AppCompatActivity {
                 }
                 else{
                     Course course= new Course(coursename,coursecode);
-                    boolean success = db.setInstructor(coursename, coursecode, "instructor");
+                    boolean success = db.setInstructor(coursename, coursecode, str1);
 
                     if (success){
                         Toast.makeText(CourseAssignActivity.this ,"SUCCESS",Toast.LENGTH_SHORT).show();}

@@ -40,6 +40,11 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), CourseAssignActivity.class);
+
+                intent.putExtra("firstname", str1);
+                intent.putExtra("username", str2);
+                intent.putExtra("role", str3);
+
                 v.getContext().startActivity(intent);
             }
         }));
