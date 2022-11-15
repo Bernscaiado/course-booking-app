@@ -12,8 +12,8 @@ public class CourseDatabase extends SQLiteOpenHelper {
     private static final String COLUMN_COURSECODE = "code";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_INSTRUCTOR = "instructor";
-    private static final String COLUMN_DAYS = "days";
-    private static final String COLUMN_HOURS = "hours";
+    private static final String COLUMN_DAYS = "day";
+    private static final String COLUMN_HOURS = "hour";
     private static final String COLUMN_DESCRIPTION = "description";
     private static final String COLUMN_CAPACITY = "capacity";
 
@@ -99,6 +99,49 @@ public class CourseDatabase extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM courses WHERE name = ? AND code = ? AND instructor IS NOT NULL", new String[] {coursename,coursecode});
         return cursor.getCount()>0;
     }
+
+    public Boolean checkInstructor(String name,String code,String username){
+        Cursor cursor = this.getData();
+        while (cursor.moveToNext()) {
+            if(cursor.getString(1)==name && cursor.getString(2)==code && cursor.getString(3)==username){
+                return true;
+            }
+        }
+        return  false;
+
+
+    }
+    public boolean setDays(String name, String code, String day) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_DAYS, day);
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? and day = ?",new String[]{name,code,day});
+        return true;
+    }
+    public boolean setHours(String name, String code, String hour) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_DAYS, hour);
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? and hour = ?",new String[]{name,code,hour});
+        return true;
+    }
+    public boolean setDescription(String name, String code, String description) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_DAYS, description);
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? and description = ?",new String[]{name,code,description});
+        return true;
+    }
+    public boolean setCapacity(String name, String code, String capacity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_DAYS, capacity);
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? and capacity = ?",new String[]{name,code,capacity});
+        return true;
+    }
+
+
+
 
 
     public void editCourse(String newName, String newCode, String oldName, String oldCode){
