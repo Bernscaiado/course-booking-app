@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +31,7 @@ public class ManageUsers extends AppCompatActivity {
         Button btn_back2 = findViewById(R.id.btn_back2);
         Button deleteStudent = findViewById(R.id.deleteStudent);
         Button view = findViewById(R.id.viewall);
+        Button next = findViewById(R.id.view);
         //Button
         EditText firstname = findViewById(R.id.firstname);
         EditText username = findViewById(R.id.username);
@@ -80,6 +82,14 @@ public class ManageUsers extends AppCompatActivity {
                 deleteUser(userName,firstName);
             }
         });
+        next.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ListUsersActivity.class);
+                v.getContext().startActivity(intent);
+
+            }
+        }));
     }
 
     private void deleteUser(String username, String firstName){
@@ -102,5 +112,6 @@ public class ManageUsers extends AppCompatActivity {
         alertDialog.show();
 
     }
+
 
 }

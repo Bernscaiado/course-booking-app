@@ -12,6 +12,10 @@ public class CourseDatabase extends SQLiteOpenHelper {
     private static final String COLUMN_COURSECODE = "code";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_INSTRUCTOR = "instructor";
+    private static final String COLUMN_DAYS = "days";
+    private static final String COLUMN_HOURS = "hours";
+    private static final String COLUMN_DESCRIPTION = "description";
+    private static final String COLUMN_CAPACITY = "capacity";
 
 
 
@@ -30,7 +34,11 @@ public class CourseDatabase extends SQLiteOpenHelper {
                 "(" + COLUMN_ID + "INTEGER PRIMARY KEY, " +
                 COLUMN_COURSENAME + " TEXT, " +
                 COLUMN_COURSECODE + " TEXT, " +
-                COLUMN_INSTRUCTOR + ")";
+                COLUMN_INSTRUCTOR  + " TEXT, " +
+                COLUMN_DAYS + " TEXT, " +
+                COLUMN_HOURS + " TEXT, " +
+                COLUMN_DESCRIPTION + " TEXT, " +
+                COLUMN_CAPACITY + ")";
 
         db.execSQL(create_table_cmd);
     }
