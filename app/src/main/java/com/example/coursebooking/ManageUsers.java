@@ -24,6 +24,8 @@ public class ManageUsers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_users);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         ArrayList<String> userList;
         ArrayAdapter adapter;
         //Array

@@ -25,6 +25,8 @@ public class ListUsersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_courses);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         UserList = new ArrayList<>();
         UserListView = findViewById(R.id.CourseListView);
         dbHandler = new DBHandler(this);

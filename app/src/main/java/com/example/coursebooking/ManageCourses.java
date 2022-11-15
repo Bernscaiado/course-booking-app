@@ -15,6 +15,10 @@ public class ManageCourses extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_courses);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Button
         Button delete = findViewById(R.id.deleteCourse);
         Button edit = findViewById(R.id.editCourse);
