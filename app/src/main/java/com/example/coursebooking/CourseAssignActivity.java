@@ -58,7 +58,7 @@ public class CourseAssignActivity extends AppCompatActivity {
                 }
                 else{
                     Course course= new Course(coursename,coursecode);
-                    boolean success = db.setInstructor(coursename, coursecode, str1);
+                    boolean success = db.setInstructor(coursename, coursecode, str2);
 
                     if (success){
                         Toast.makeText(CourseAssignActivity.this ,"SUCCESS",Toast.LENGTH_SHORT).show();}
@@ -71,11 +71,40 @@ public class CourseAssignActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String coursename = name.getText().toString();
                 String coursecode = code.getText().toString();
-                boolean success = db.nullInstructor(coursename, coursecode, str1);
+                boolean success = db.nullInstructor(coursename, coursecode, str2);
 
                 if (success){
+                    db.clearDetails(coursename,coursecode);
                     Toast.makeText(CourseAssignActivity.this ,"SUCCESS",Toast.LENGTH_SHORT).show();
+
                 }
+            }
+        });
+
+        detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String coursename = name.getText().toString();
+                String coursecode = code.getText().toString();
+                boolean res = db.checkInstructor(coursename, coursecode,str2);
+                if (res ){
+                    Intent intent = new Intent(view.getContext(),CourseDetailActivity.class);
+
+                    intent.putExtra("coursename", coursename);
+                    intent.putExtra("coursecode", coursecode);
+
+                    view.getContext().startActivity(intent);
+
+
+                }
+                else{
+                    Toast.makeText(CourseAssignActivity.this ,"NOTAUTHORIZED",Toast.LENGTH_SHORT).show();
+
+
+
+                }
+
+
             }
         });
 

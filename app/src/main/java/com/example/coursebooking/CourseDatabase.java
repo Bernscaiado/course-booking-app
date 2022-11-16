@@ -100,14 +100,25 @@ public class CourseDatabase extends SQLiteOpenHelper {
         return cursor.getCount()>0;
     }
 
-    public Boolean checkInstructor(String name,String code,String username){
-        Cursor cursor = this.getData();
-        while (cursor.moveToNext()) {
-            if(cursor.getString(1)==name && cursor.getString(2)==code && cursor.getString(3)==username){
-                return true;
-            }
-        }
-        return  false;
+    public boolean checkInstructor(String name,String code,String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM courses WHERE name = ? AND code = ? AND instructor = ?", new String[] {name,code,username});
+
+
+        return cursor.getCount()>0;
+
+
+    }
+    public void clearDetails(String name, String code){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.putNull(COLUMN_DAYS);
+        cv.putNull(COLUMN_HOURS);
+        cv.putNull(COLUMN_DESCRIPTION);
+        cv.putNull(COLUMN_CAPACITY);
+
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? ",new String[]{name,code});
+
 
 
     }
@@ -115,28 +126,30 @@ public class CourseDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_DAYS, day);
-        db.update(TABLE_COURSES,cv,"name = ? and code = ? and day = ?",new String[]{name,code,day});
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? ",new String[]{name,code});
         return true;
     }
     public boolean setHours(String name, String code, String hour) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_DAYS, hour);
-        db.update(TABLE_COURSES,cv,"name = ? and code = ? and hour = ?",new String[]{name,code,hour});
+        cv.put(COLUMN_HOURS, hour);
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? ",new String[]{name,code});
         return true;
     }
     public boolean setDescription(String name, String code, String description) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_DAYS, description);
-        db.update(TABLE_COURSES,cv,"name = ? and code = ? and description = ?",new String[]{name,code,description});
+        cv.put(COLUMN_DESCRIPTION, description);
+        db.update(TABLE_COURSES,cv,"name = ? and code = ?",new String[]{name,code});
         return true;
     }
     public boolean setCapacity(String name, String code, String capacity) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_DAYS, capacity);
-        db.update(TABLE_COURSES,cv,"name = ? and code = ? and capacity = ?",new String[]{name,code,capacity});
+        cv.put(COLUMN_COURSENAME, name);
+        cv.put(COLUMN_COURSECODE, code);
+        cv.put(COLUMN_CAPACITY, capacity);
+        db.update(TABLE_COURSES,cv,"name = ? and code = ?",new String[]{name,code});
         return true;
     }
 
@@ -168,5 +181,10 @@ public class CourseDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_COURSES;
         return db.rawQuery(query, null); // returns "cursor" all products from the table
+    }
+
+    public Cursor getData(String coursename, String coursecode){
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM TABLE_COURSES WHERE name = ? AND code = ?", new String[]{coursename,coursecode} );
     }
 }

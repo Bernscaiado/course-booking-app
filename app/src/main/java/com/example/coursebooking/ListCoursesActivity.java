@@ -36,7 +36,7 @@ public class ListCoursesActivity extends AppCompatActivity {
             Toast.makeText(ListCoursesActivity.this, "Nothing to show", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
-                CourseList.add(cursor.getString(1) + " " + cursor.getString(2));
+                CourseList.add(cursor.getString(1) + " " + cursor.getString(2)+ " " + cursor.getString(3)+ " " + cursor.getString(4)+ " " + cursor.getString(5)+ " " + cursor.getString(6)+ " " + cursor.getString(7));
             }
         }
 
