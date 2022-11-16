@@ -53,7 +53,8 @@ public class CourseAssignActivity extends AppCompatActivity {
                 }
                 else if(db.hasInstructor(coursename,coursecode)== true)
                 {
-                    Toast.makeText(CourseAssignActivity.this, "Course already has instructor", Toast.LENGTH_SHORT).show();
+                    String res = db.getInstructor(coursename,coursecode);
+                    Toast.makeText(CourseAssignActivity.this, "Course already assigned by: "+res, Toast.LENGTH_SHORT).show();
 
                 }
                 else{
