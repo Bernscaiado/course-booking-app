@@ -22,6 +22,7 @@ public class CourseAssignActivity extends AppCompatActivity {
         // buttons
         Button assign = findViewById(R.id.assign);
         Button unassign = findViewById(R.id.unassign);
+        Button detail = findViewById(R.id.detail);
 
         EditText name = findViewById(R.id.name);
         EditText code = findViewById(R.id.code);
