@@ -73,14 +73,6 @@ public class SearchCourseActivity extends AppCompatActivity {
             }
         });
 
-//        btn_back1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v){
-//                Intent intent = new Intent(v.getContext(), MainActivity2.class);
-//                v.getContext().startActivity(intent);
-//            }
-//        });
-
         viewCourses();
     }
 
