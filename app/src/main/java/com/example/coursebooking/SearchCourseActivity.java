@@ -91,7 +91,7 @@ public class SearchCourseActivity extends AppCompatActivity {
             Toast.makeText(SearchCourseActivity.this, "Nothing to show", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
-                courseList.add(cursor.getString(1) + " (" +cursor.getString(2)+")");
+                courseList.add(cursor.getString(1) +" " +cursor.getString(2)+);
             }
         }
 
