@@ -76,7 +76,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public Cursor getData() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_USERS;
-        return db.rawQuery(query, null); // returns "cursor" all products from the table
+        return db.rawQuery(query, null); // returns "cursor" all Courses from the table
     }
 
 }

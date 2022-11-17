@@ -180,11 +180,28 @@ public class CourseDatabase extends SQLiteOpenHelper {
     public Cursor getData() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_COURSES;
-        return db.rawQuery(query, null); // returns "cursor" all products from the table
+        return db.rawQuery(query, null); // returns "cursor" all Courses from the table
     }
 
     public Cursor getData(String coursename, String coursecode){
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM TABLE_COURSES WHERE name = ? AND code = ?", new String[]{coursename,coursecode} );
+    }
+
+    public Cursor findByName(String keyword) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_COURSES + " where " + COLUMN_COURSENAME + " = ?" ,new String[] { keyword });
+        return cursor;
+    }
+    public Cursor findByCode(String keyword) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_COURSES + " where " + COLUMN_COURSECODE + " = ?" ,new String[] { keyword });
+        return cursor;
+    }
+
+    public Cursor findCourse(String name, String code) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_COURSES + " where " + COLUMN_COURSENAME + " = ? and " + COLUMN_COURSECODE + "= ?" ,new String[] { name, code });
+        return cursor;
     }
 }
