@@ -24,7 +24,7 @@ public class SearchCourseActivity extends AppCompatActivity {
     ArrayList<String> courseList;
     ArrayAdapter adapter;
     CourseDatabase db;
-    Button btn_back;
+    //Button btn_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class SearchCourseActivity extends AppCompatActivity {
         //btn_back = findViewById(R.id.btn_back);
 
         //buttons
-        findBtn = findViewById(R.id.findBtn);
+        findBtn = findViewById(R.id.btn_search);
 
 
         // listview

@@ -99,6 +99,16 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".SearchCourseActivity"
+            android:exported="true"
+            android:label="@string/title_activity_courses"
+            android:parentActivityName=".MainActivity3"
+            android:theme="@style/Theme.CourseBooking.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
     </application>
 
 </manifest>

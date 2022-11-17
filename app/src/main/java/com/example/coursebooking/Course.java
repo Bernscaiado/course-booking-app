@@ -7,10 +7,8 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course{" +
-                "CourseName= '" + CourseName + '\'' +
-                ", CourseCode= " + CourseCode +
-                '}';
+        return "CourseName= '" + CourseName + '\'' +
+                ",\nCourseCode= " + CourseCode;
     }
 
     public String getCourseName() {

@@ -120,7 +120,6 @@ public class CourseDatabase extends SQLiteOpenHelper {
 
             }
 
-
         }
         return "";
 
