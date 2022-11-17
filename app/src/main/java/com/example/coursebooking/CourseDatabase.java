@@ -28,6 +28,7 @@ public class CourseDatabase extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String create_table_cmd = "CREATE TABLE " + TABLE_COURSES +
@@ -109,6 +110,28 @@ public class CourseDatabase extends SQLiteOpenHelper {
 
 
     }
+    public String getInstructor(String name , String code){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = this.getData();
+
+        while (cursor.moveToNext()) {
+            if(cursor.getString(1).equals(name)&&cursor.getString(2).equals(code)){
+                return cursor.getString(3);
+
+            }
+
+
+        }
+        return "";
+
+
+
+
+
+
+    }
+
+
     public void clearDetails(String name, String code){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
