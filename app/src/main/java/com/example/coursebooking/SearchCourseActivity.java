@@ -1,6 +1,5 @@
 package com.example.coursebooking;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -78,6 +77,7 @@ public class SearchCourseActivity extends AppCompatActivity {
 
     private void viewCourses() {
         courseList.clear();
+
         Cursor cursor = db.getData();
         if (cursor.getCount() == 0) {
             Toast.makeText(SearchCourseActivity.this, "Nothing to show", Toast.LENGTH_SHORT).show();
