@@ -76,7 +76,14 @@ public class MainActivity extends AppCompatActivity {
                             if (role.equals("Admin"))
                             {
                                 intent = new Intent(v.getContext(), MainActivity2.class);
-                            } else {
+                            }
+                            else if(role.equals("Student")){
+                                intent = new Intent(v.getContext(), StudentActivity.class);
+
+
+                            }
+
+                            else {
                                 intent = new Intent(v.getContext(), MainActivity3.class);
                             }
                             intent.putExtra("firstname", first);
