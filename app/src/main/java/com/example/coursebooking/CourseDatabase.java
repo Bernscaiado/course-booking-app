@@ -95,7 +95,18 @@ public class CourseDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         String result = getStudents(name,code);
-        cv.put(COLUMN_STUDENTS, student + result);
+        cv.put(COLUMN_STUDENTS, student + result.replace("null", ""));
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? ",new String[]{name,code});
+        return true;
+    }
+
+    public boolean removeStudent(String name, String code, String student) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        String result = getStudents(name,code);
+
+
+        cv.put(COLUMN_STUDENTS, result.replace(student,""));
         db.update(TABLE_COURSES,cv,"name = ? and code = ? ",new String[]{name,code});
         return true;
     }

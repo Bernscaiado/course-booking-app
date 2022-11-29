@@ -62,6 +62,17 @@ public class CourseEnrollActivity extends AppCompatActivity {
                 }}
         });
 
+        unassign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String coursename = name.getText().toString();
+                String coursecode = code.getText().toString();
+
+                db.removeStudent(coursename,coursecode, str2);
+                Toast.makeText(CourseEnrollActivity.this ,"SUCCESS",Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
     }
