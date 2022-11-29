@@ -6,6 +6,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 public class CourseDatabase extends SQLiteOpenHelper {
     private static final String TABLE_COURSES = "courses";
     private static final String COLUMN_COURSENAME = "name";
@@ -106,6 +108,26 @@ public class CourseDatabase extends SQLiteOpenHelper {
             str += cursor.getString(cursor.getColumnIndex(COLUMN_STUDENTS));
         }
         return str;
+    }
+
+    public ArrayList<String> getInstructorCourses(String instructor) {
+        ArrayList<String> list = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_COURSES + " where " + COLUMN_INSTRUCTOR + " = ? " ,new String[] { instructor });
+        if (cursor.moveToFirst()){
+            while(!cursor.isAfterLast()){
+                String name = cursor.getString(cursor.getColumnIndex(COLUMN_COURSENAME));
+                String code = cursor.getString(cursor.getColumnIndex(COLUMN_COURSECODE));
+
+                list.add(name);
+                list.add(code);
+
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+
+        return list;
     }
 
     public boolean nullInstructor(String name, String code, String instructor) {
