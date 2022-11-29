@@ -26,6 +26,8 @@ public class MainActivity3 extends AppCompatActivity {
         Button list = findViewById(R.id.listCourses);
         Button assign = findViewById(R.id.assign);
         Button searchCourse = findViewById(R.id.searchCourse);
+        Button enrolled = findViewById(R.id.enrolled);
+
 
 
         Intent intent = getIntent();
@@ -41,6 +43,19 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ListCoursesActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        }));
+
+        enrolled.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ListMyStudentsActivity.class);
+
+                intent.putExtra("firstname", str1);
+                intent.putExtra("username", str2);
+                intent.putExtra("role", str3);
+
                 v.getContext().startActivity(intent);
             }
         }));
