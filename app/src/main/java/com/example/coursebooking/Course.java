@@ -1,9 +1,13 @@
 package com.example.coursebooking;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Course {
     private String CourseName;
     private String CourseCode;
     private String Instructor;
+    private List<String> Students = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -24,6 +28,12 @@ public class Course {
     public String getInstructor() {
         return Instructor;
     }
+
+    public List<String> getStudents() {return Students;}
+
+    public void setStudents(List<String> students) { this.Students = students; }
+
+    public void addStudent(String student) { Students.add(student); }
 
     public void setCourseCode(String courseCode) {
         CourseCode = courseCode;

@@ -16,6 +16,7 @@ public class CourseDatabase extends SQLiteOpenHelper {
     private static final String COLUMN_HOURS = "hour";
     private static final String COLUMN_DESCRIPTION = "description";
     private static final String COLUMN_CAPACITY = "capacity";
+    private static final String COLUMN_STUDENTS = "students";
 
 
 
@@ -39,6 +40,7 @@ public class CourseDatabase extends SQLiteOpenHelper {
                 COLUMN_DAYS + " TEXT, " +
                 COLUMN_HOURS + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
+                COLUMN_STUDENTS + " TEXT, " +
                 COLUMN_CAPACITY + ")";
 
         db.execSQL(create_table_cmd);
@@ -87,6 +89,25 @@ public class CourseDatabase extends SQLiteOpenHelper {
         return true;
     }
 
+    public boolean addStudent(String name, String code, String student) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        String result = getStudents(name,code);
+        cv.put(COLUMN_STUDENTS, student + result);
+        db.update(TABLE_COURSES,cv,"name = ? and code = ? ",new String[]{name,code});
+        return true;
+    }
+
+    public String getStudents(String name, String code) {
+        String str = " ";
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_COURSES + " where " + COLUMN_COURSENAME + " = ? and " + COLUMN_COURSECODE + "= ?" ,new String[] { name, code });
+        if (cursor.moveToFirst()) {
+            str += cursor.getString(cursor.getColumnIndex(COLUMN_STUDENTS));
+        }
+        return str;
+    }
+
     public boolean nullInstructor(String name, String code, String instructor) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -122,10 +143,6 @@ public class CourseDatabase extends SQLiteOpenHelper {
 
         }
         return "";
-
-
-
-
 
 
     }
