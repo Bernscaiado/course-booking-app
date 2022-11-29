@@ -1,33 +1,23 @@
 package com.example.coursebooking;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-public class MainActivity3 extends AppCompatActivity {
+public class MainActivity4 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        setContentView(R.layout.activity_main4);
 
         Button list = findViewById(R.id.listCourses);
-        Button assign = findViewById(R.id.assign);
+        Button enroll = findViewById(R.id.enroll);
         Button searchCourse = findViewById(R.id.searchCourse);
-        Button enrolled = findViewById(R.id.enrolled);
-
 
 
         Intent intent = getIntent();
@@ -47,32 +37,6 @@ public class MainActivity3 extends AppCompatActivity {
             }
         }));
 
-        enrolled.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ListMyStudentsActivity.class);
-
-                intent.putExtra("firstname", str1);
-                intent.putExtra("username", str2);
-                intent.putExtra("role", str3);
-
-                v.getContext().startActivity(intent);
-            }
-        }));
-
-        assign.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), CourseAssignActivity.class);
-
-                intent.putExtra("firstname", str1);
-                intent.putExtra("username", str2);
-                intent.putExtra("role", str3);
-
-                v.getContext().startActivity(intent);
-            }
-        }));
-
         searchCourse.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,8 +48,22 @@ public class MainActivity3 extends AppCompatActivity {
                 v.getContext().startActivity(intent);
             }
         }));
+
+        enroll.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CourseEnrollActivity.class);
+
+                intent.putExtra("firstname", str1);
+                intent.putExtra("username", str2);
+                intent.putExtra("role", str3);
+
+                v.getContext().startActivity(intent);
+            }
+        }));
+
+
+
+
     }
-
-
-
 }
