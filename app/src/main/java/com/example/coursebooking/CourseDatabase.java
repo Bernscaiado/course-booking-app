@@ -1,5 +1,6 @@
 package com.example.coursebooking;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.content.Context;
@@ -61,6 +62,7 @@ public class CourseDatabase extends SQLiteOpenHelper {
         return cursor.getCount()>0;
     }
 
+
     public boolean addOne(Course course){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -111,6 +113,7 @@ public class CourseDatabase extends SQLiteOpenHelper {
         return true;
     }
 
+    @SuppressLint("Range")
     public String getStudents(String name, String code) {
         String str = " ";
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
@@ -127,8 +130,8 @@ public class CourseDatabase extends SQLiteOpenHelper {
         Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_COURSES + " where " + COLUMN_INSTRUCTOR + " = ? " ,new String[] { instructor });
         if (cursor.moveToFirst()){
             while(!cursor.isAfterLast()){
-                String name = cursor.getString(cursor.getColumnIndex(COLUMN_COURSENAME));
-                String code = cursor.getString(cursor.getColumnIndex(COLUMN_COURSECODE));
+                @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(COLUMN_COURSENAME));
+                @SuppressLint("Range") String code = cursor.getString(cursor.getColumnIndex(COLUMN_COURSECODE));
 
                 list.add(name);
                 list.add(code);
@@ -164,6 +167,7 @@ public class CourseDatabase extends SQLiteOpenHelper {
 
 
     }
+
     public String getInstructor(String name , String code){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = this.getData();

@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     Boolean checkuser = db.checkUsername(user);
                     if (checkuser == true) {
                         Toast.makeText(MainActivity.this, "User is already registered", Toast.LENGTH_SHORT).show();
+                        return;
                     }
                     if (role == "Admin") {
                         Toast.makeText(MainActivity.this, "Cannot Create Admin Account", Toast.LENGTH_SHORT).show();

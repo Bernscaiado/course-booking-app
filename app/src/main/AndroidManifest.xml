@@ -13,16 +13,35 @@
         android:theme="@style/Theme.CourseBooking"
         tools:targetApi="31">
         <activity
-            android:name=".CourseDetailActivity"
-            android:exported="false"
-            android:parentActivityName=".CourseAssignActivity">
-            >
-
+            android:name=".ListMyStudentsActivity"
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
+        <activity
+            android:name=".CourseEnrollActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MainActivity4"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CourseDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".CourseAssignActivity">
+            >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ListUsersActivity"
             android:exported="false"
