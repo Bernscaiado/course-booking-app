@@ -129,6 +129,16 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".ListStudentEnrolledActivity"
+            android:exported="true"
+            android:label="@string/title_activity_student_enroll"
+            android:parentActivityName=".MainActivity4"
+            android:theme="@style/Theme.CourseBooking.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
     </application>
 
 </manifest>

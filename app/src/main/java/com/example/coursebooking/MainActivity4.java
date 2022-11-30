@@ -18,6 +18,7 @@ public class MainActivity4 extends AppCompatActivity {
         Button list = findViewById(R.id.listCourses);
         Button enroll = findViewById(R.id.enroll);
         Button searchCourse = findViewById(R.id.searchCourse);
+        Button myCourses = findViewById(R.id.myCourses);
 
 
         Intent intent = getIntent();
@@ -62,8 +63,19 @@ public class MainActivity4 extends AppCompatActivity {
             }
         }));
 
+        myCourses.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),ListStudentEnrolledActivity.class);
 
+                intent.putExtra("firstname", str1);
+                intent.putExtra("username", str2);
+                intent.putExtra("role", str3);
 
+                v.getContext().startActivity(intent);
+
+            }
+        }));
 
     }
 }

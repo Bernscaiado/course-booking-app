@@ -15,13 +15,15 @@ public class ListStudentEnrolledActivity extends AppCompatActivity {
     ArrayList<String> CourseList;
     ArrayAdapter adapter;
     DBHandler dbHandler;
-    Intent intent = getIntent();
-    String str2 = intent.getStringExtra("username");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_enrolled_detail);
+
+        Intent intent = getIntent();
+        String str2 = intent.getStringExtra("username");
 
         CourseList = new ArrayList<>();
         CourseListView = findViewById(R.id.EnrolledListView);

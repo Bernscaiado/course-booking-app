@@ -26,4 +26,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_users">ManageUsers</string>
     <string name="title_activity_courses">ManageCourses</string>
+    <string name="title_activity_student_enroll" />
 </resources>
