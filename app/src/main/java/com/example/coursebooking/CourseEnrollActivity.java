@@ -71,7 +71,21 @@ public class CourseEnrollActivity extends AppCompatActivity {
                 String coursecode = code.getText().toString();
 
                 db.removeStudent(coursename,coursecode, str2);
+                dbUser.removeEnrolled(coursename,coursecode,str2);
                 Toast.makeText(CourseEnrollActivity.this ,"SUCCESS",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),ListStudentEnrolledActivity.class);
+
+                intent.putExtra("username", str2);
+
+
+                view.getContext().startActivity(intent);
+
             }
         });
 
