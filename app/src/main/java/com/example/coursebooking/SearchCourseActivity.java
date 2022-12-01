@@ -7,6 +7,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +18,10 @@ import java.util.ArrayList;
 
 public class SearchCourseActivity extends AppCompatActivity {
     TextView courseID;
-    EditText course_name, course_code;
+    EditText input;
     Button findBtn;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
     ListView coursesListView;
 
     ArrayList<String> courseList;
@@ -33,10 +37,10 @@ public class SearchCourseActivity extends AppCompatActivity {
         courseList = new ArrayList<>();
 
         // info layout
+        radioGroup = findViewById(R.id.radioGroupID);
         courseID = findViewById(R.id.courseID);
-        course_name = findViewById(R.id.course_name);
-        course_code = findViewById(R.id.course_code);
-        //btn_back = findViewById(R.id.btn_back);
+        input = findViewById(R.id.inputID);
+
 
         //buttons
         findBtn = findViewById(R.id.btn_search);
@@ -53,27 +57,36 @@ public class SearchCourseActivity extends AppCompatActivity {
         findBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = course_name.getText().toString();
-                String Code = course_code.getText().toString();
-                course_name.setText("");
-                course_code.setText("");
+                int radioId = radioGroup.getCheckedRadioButtonId();
+                radioButton = findViewById(radioId);
 
-                if(name.length() > 0 && Code.length() >0)
-                    findCourse(name, Code);
-                else if (name.length() > 0)
-                    findByCourseName(name);
-                else if(Code.length() > 0)
-                    findByCourseCode(Code);
-                else {
-                    emptyFieldException();
+                String inputString = input.getText().toString();
+
+                input.setText("");
+
+                // Check which radio button was clicked
+                if(radioId != -1) {
+                    switch (radioId) {
+                        case R.id.radioButtonDay:
+                            findByCourseDay(inputString);
+                            break;
+                        case R.id.radioButtonName:
+                            findByCourseName(inputString);
+                            break;
+                        case R.id.radioButtonCode:
+                            findByCourseCode(inputString);
+                            break;
+                        default:
+                            emptyFieldException();
+                    }
                 }
-
-                //Toast.makeText(MainActivity.this, "Delete Course", Toast.LENGTH_SHORT).show();
+                else{emptyFieldException();}
             }
         });
 
         viewCourses();
     }
+
 
     private void viewCourses() {
         courseList.clear();
@@ -102,15 +115,15 @@ public class SearchCourseActivity extends AppCompatActivity {
         }
 
         else{
-            courseList.add("NO SUCH Course EXISTS");
+            courseList.add("NO SUCH COURSE EXISTS");
         }
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, courseList);
         coursesListView.setAdapter(adapter);
     }
 
-    private void findByCourseCode(String Code){
+    private void findByCourseCode(String code){
         courseList.clear();
-        Cursor cursor = db.findByCode(Code);
+        Cursor cursor = db.findByCode(code);
         if (cursor.moveToFirst()) {
             do{
                 Course Course = new Course(cursor.getString(1),cursor.getString(2),cursor.getString(3));
@@ -119,32 +132,32 @@ public class SearchCourseActivity extends AppCompatActivity {
         }
 
         else{
-            courseList.add("NO SUCH Course EXISTS");
+            courseList.add("NO SUCH COURSE EXISTS");
         }
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, courseList);
         coursesListView.setAdapter(adapter);
     }
-
-    private void findCourse(String name, String Code){
-        courseList.clear();
-        Cursor cursor = db.findCourse(name, Code);
-        if (cursor.moveToFirst()) {
-            do{
-                Course Course = new Course(cursor.getString(1),cursor.getString(2),cursor.getString(3));
-                courseList.add(Course.toString());
-            }while(cursor.moveToNext());
-        }
-
-        else{
-            courseList.add("NO SUCH Course EXISTS");
-        }
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, courseList);
-        coursesListView.setAdapter(adapter);
-    }
-
+    
     private void emptyFieldException(){
         courseList.clear();
         courseList.add("This Operation cannot be performed. Please complete at least one field.");
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, courseList);
+        coursesListView.setAdapter(adapter);
+    }
+
+    private void findByCourseDay(String day){
+        courseList.clear();
+        Cursor cursor = db.findByDay(day);
+        if (cursor.moveToFirst()) {
+            do{
+                Course Course = new Course(cursor.getString(1),cursor.getString(2),cursor.getString(3));
+                courseList.add(Course.toString());
+            }while(cursor.moveToNext());
+        }
+
+        else{
+            courseList.add("NO SUCH COURSE EXISTS");
+        }
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, courseList);
         coursesListView.setAdapter(adapter);
     }

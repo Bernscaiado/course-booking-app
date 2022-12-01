@@ -21,21 +21,13 @@
             android:text="Course" />
 
         <EditText
-            android:id="@+id/course_name"
+            android:id="@+id/inputID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="50dp"
             android:ems="10"
-            android:hint="course name" />
+            android:hint="please enter course name or code or date" />
 
-        <EditText
-            android:id="@+id/course_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:minHeight="50dp"
-            android:hint="course code"
-            android:inputType="number" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,24 +39,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/infoLayout">
 
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_weight="1"
-            android:text="Search" />
-
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLayout">
+        app:layout_constraintTop_toBottomOf="@+id/btn_search">
 
         <ListView
             android:id="@+id/coursesListView"
@@ -72,5 +57,45 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp" />
     </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroupID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation='horizontal'
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toStartOf="@+id/btn_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLayout">
+
+        <RadioButton
+            android:id="@+id/radioButtonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name" />
+        <RadioButton
+            android:id="@+id/radioButtonCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Code" />
+
+        <RadioButton
+            android:id="@+id/radioButtonDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Day" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="98dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="16dp"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLayout" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

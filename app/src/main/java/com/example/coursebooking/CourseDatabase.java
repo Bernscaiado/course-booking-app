@@ -280,4 +280,10 @@ public class CourseDatabase extends SQLiteOpenHelper {
         Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_COURSES + " where " + COLUMN_COURSENAME + " = ? and " + COLUMN_COURSECODE + "= ?" ,new String[] { name, code });
         return cursor;
     }
+
+    public Cursor findByDay(String keyword) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_COURSES + " where " + COLUMN_DAYS + " = ?" ,new String[] { keyword });
+        return cursor;
+    }
 }
