@@ -86,7 +86,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         String res = getEnrolled(username);
-        cv.put(COLUMN_ENROLLED, res+""+name+""+code+" ");
+        cv.put(COLUMN_ENROLLED, res+" "+name+" "+code);
         db.update(TABLE_USERS,cv,"username = ? ",new String[]{username});
         return true;
 
@@ -103,6 +103,8 @@ public class DBHandler extends SQLiteOpenHelper {
         db.update(TABLE_USERS,cv,"username = ? ",new String[]{username});
         return true;
     }
+
+
     public String getEnrolled(String name){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = this.getData();

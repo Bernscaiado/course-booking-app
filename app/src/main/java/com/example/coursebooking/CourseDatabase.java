@@ -124,6 +124,48 @@ public class CourseDatabase extends SQLiteOpenHelper {
         return str;
     }
 
+    public String getDay(String name, String code){
+        ArrayList<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = this.getData();
+
+        while (cursor.moveToNext()) {
+            if(cursor.getString(1).equals(name)&&cursor.getString(2).equals(code)){
+                return cursor.getString(4);
+
+            }
+
+        }
+
+
+
+       return "";
+
+    }
+    public String getHour(String name, String code){
+        ArrayList<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = this.getData();
+
+        while (cursor.moveToNext()) {
+            if(cursor.getString(1).equals(name)&&cursor.getString(2).equals(code)){
+                return cursor.getString(5);
+
+            }
+
+        }
+
+
+
+        return "";
+
+    }
+    public String getDate(String name,String code){
+        return getDay(name,code)+getHour(name,code);
+    }
+
     public ArrayList<String> getInstructorCourses(String instructor) {
         ArrayList<String> list = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
