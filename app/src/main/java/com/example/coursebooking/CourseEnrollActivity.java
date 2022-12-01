@@ -19,7 +19,7 @@ public class CourseEnrollActivity extends AppCompatActivity {
         // buttons
         Button assign = findViewById(R.id.enroll);
         Button unassign = findViewById(R.id.unenroll);
-        Button detail = findViewById(R.id.detail);
+//        Button detail = findViewById(R.id.detail);
 
         EditText name = findViewById(R.id.name);
         EditText code = findViewById(R.id.code);
@@ -76,18 +76,18 @@ public class CourseEnrollActivity extends AppCompatActivity {
             }
         });
 
-        detail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),ListStudentEnrolledActivity.class);
-
-                intent.putExtra("username", str2);
-
-
-                view.getContext().startActivity(intent);
-
-            }
-        });
+//        detail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(view.getContext(),ListStudentEnrolledActivity.class);
+//
+//                intent.putExtra("username", str2);
+//
+//
+//                view.getContext().startActivity(intent);
+//
+//            }
+//        });
 
 
 
