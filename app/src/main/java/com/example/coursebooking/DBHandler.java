@@ -96,12 +96,13 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         String result = getEnrolled(username);
-        String res = name + code;
+        String res = name + " " + code;
 
 
         cv.put(COLUMN_ENROLLED, result.replace(res,""));
         db.update(TABLE_USERS,cv,"username = ? ",new String[]{username});
         return true;
+
     }
 
 

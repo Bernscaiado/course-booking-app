@@ -40,7 +40,6 @@ public class CourseEnrollActivity extends AppCompatActivity {
                 String coursecode = code.getText().toString();
                 if(checkConflict(coursename,coursecode,str2)==false){
                     Toast.makeText(CourseEnrollActivity.this, "Time Conflict", Toast.LENGTH_SHORT).show();
-                    return;
 
 
                 }
@@ -103,16 +102,20 @@ public class CourseEnrollActivity extends AppCompatActivity {
     public boolean checkConflict(String name, String code, String username){
         CourseDatabase db = new CourseDatabase(this);
         DBHandler dbUser = new DBHandler(this);
-        String day = db.getDay(name,code);
-        String hour = db.getHour(name, code);
+
         //if(day.equals("") || hour.equals("")){
             //return true;
         //}
         String res = db.getDate(name,code);
         String list = dbUser.getEnrolled(username);
         String [] splited = list.split("\\s+");
-        for (int i = 0; i < splited.length;i=i+2){
-            if(db.getDate(splited[i],splited[i+1])==res){
+        System.out.println(list);
+        System.out.println(db.getDate(splited[0],splited[1]));
+
+
+
+        for (int i = 1; i < splited.length;i=i+2){
+            if(db.getDate(splited[i-1],splited[i]).equals(res)){
                 return false;
             }
         }
